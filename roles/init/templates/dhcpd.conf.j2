@@ -1,0 +1,18 @@
+DHCPDARGS={{ interface }}; #args for the dhcpd daemon -> limit DHCP to the wlan0 interface
+default-lease-time 600;
+max-lease-time 7200;
+
+option subnet-mask 255.255.255.0;
+option broadcast-address 10.0.0.255;
+option domain-name "{{ inventory_hostname }}-network";
+option routers {{ router }}; #default gateway
+
+subnet {{ subnet }} netmask {{ netmask }} {
+    range {{ iprangemin }} {{ iprangemax }}; #IP range to offer
+}
+
+#static IP-assignment
+host myLaptop {
+    hardware ethernet {{ hostvars[inventory_hostname]['ansible_' + interface].macaddress }};
+    fixed-address {{ ip }};
+}

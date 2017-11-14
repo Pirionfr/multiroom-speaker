@@ -1,0 +1,27 @@
+---
+
+- name: "update isc-dhcp-server conf"
+  lineinfile:
+    path: /etc/default/isc-dhcp-server
+    regexp: '^INTERFACES='
+    line: 'INTERFACES="{{ interface }}"'
+
+
+- name: "update dhcpd conf"
+  template:
+    src: dhcpd.conf.j2
+    dest: /etc/dhcp/dhcpd.conf
+
+
+- name: "disable isc-dhcp-server"
+  service:
+    name: isc-dhcp-server
+    enabled: false
+
+- name: "update hosts file"
+  template:
+    src: hosts.j2
+    dest: /etc/hosts
+
+- name: "set hostname set"
+  hostname: name={{ inventory_hostname }}

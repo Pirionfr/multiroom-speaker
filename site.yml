@@ -1,0 +1,10 @@
+---
+
+
+- hosts: speaker
+  roles:
+  - { role: init, tags: init, become : true}
+  - { role: mopidy, tags: mopidy, become : true }
+
+
+
