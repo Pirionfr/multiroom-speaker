@@ -61,8 +61,5 @@
   template:
     src: mopidy.conf.j2
     dest: /etc/mopidy/mopidy.conf
+  notify: "restart mopidy"
 
-- name: "restart mopidy"
-  service:
-     name: mopidy
-     state: restarted

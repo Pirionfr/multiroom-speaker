@@ -13,9 +13,4 @@
 - name: Install missing dependencies
   apt:
    upgrade: true
-
-
-- name: "restart snapcserver"
-  service:
-     name: snapserver
-     state: restarted
+  notify: restart snapclient
