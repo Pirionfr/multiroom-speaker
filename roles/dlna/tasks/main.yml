@@ -1,0 +1,41 @@
+---
+
+- name: "Add upmpdcli apt key by id from a keyserver"
+  apt_key:
+    keyserver: pool.sks-keyservers.net
+    id: "{{item}}"
+    state: present
+  with_items:
+    - 4C6E80B6374DCD5F53AB706A32D9C2A835ED066C
+    - F8E3347256922A8AE767605B7808CE96D38B9201
+
+- name: "add upmpdcli repository"
+  apt_repository:
+    repo: deb {{ repo }} unstable main
+    state: present
+    filename: 'upmpdcli'
+
+- name: "install packages"
+  apt:
+    name: "{{item}}"
+    state: present
+    update_cache: yes
+  with_items:
+    - upmpdcli
+
+- name: "update upmpdcli conf"
+  lineinfile:
+    path: /etc/upmpdcli.conf
+    regexp: '^#friendlyname'
+    line: 'friendlyname = {{ inventory_hostname }}'
+
+- name: "update upmpdcli conf"
+  lineinfile:
+    path: /etc/upmpdcli.conf
+    regexp: '^#ohproductroom'
+    line: 'ohproductroom = {{ inventory_hostname }}'
+
+- name: "Restart Service"
+  service:
+    name: upmpdcli
+    state: restarted

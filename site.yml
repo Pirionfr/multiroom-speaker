@@ -1,0 +1,13 @@
+---
+
+
+- hosts: all
+  become : true
+  roles:
+  - { role: init, tags: init}
+  - { role: mopidy, tags: mopidy }
+  - { role: dlna, tags: dlna }
+  - { role: airplay, tags: airplay }
+  - { role: snapcast, tags: snapcast }
+
+

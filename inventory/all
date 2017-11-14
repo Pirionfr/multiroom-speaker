@@ -1,0 +1,5 @@
+[server]
+serveur ansible_ssh_host=<host> ansible_user=<user>
+
+[speaker]
+speaker2  ansible_ssh_host=<host> ansible_user=<user>

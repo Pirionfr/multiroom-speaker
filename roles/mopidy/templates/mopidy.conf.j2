@@ -1,0 +1,18 @@
+
+[http]
+enabled = true
+hostname = ::
+port = 6680
+static_dir =
+zeroconf = {{ inventory_hostname }}
+
+[iris]
+enabled = true
+country = {{ iris_country }}
+locale = {{ iris_locale }}
+authorization_url = https://jamesbarnsley.co.nz/auth_v2.php
+
+[deezer]
+enabled = true
+user_id = {{ deezer_id }}
+

@@ -1,0 +1,68 @@
+---
+
+- name: "Add apt key"
+  apt_key:
+    url: https://apt.mopidy.com/mopidy.gpg
+    state: present
+
+
+- name: "add repository"
+  get_url:
+      url: https://apt.mopidy.com/jessie.list
+      dest: /etc/apt/sources.list.d/mopidy.list
+
+- name: "update apt cache"
+  apt:
+    update_cache: yes
+
+- name: "install packages"
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - libasound2-dev
+    - python-setuptools
+    - python-dev
+    - libffi-dev
+    - python-spotify
+    - gir1.2-gst-plugins-base-1.0
+    - gir1.2-gstreamer-1.0
+    - gstreamer1.0-plugins-good
+    - gstreamer1.0-plugins-bad
+    - gstreamer1.0-plugins-ugly
+    - gstreamer1.0-tools
+    - gstreamer1.0-alsa
+    - mopidy
+
+
+- name: Install pip
+  easy_install:
+    name: pip
+
+- name: install a python package
+  pip:
+    name: "{{ item }}"
+  with_items:
+    - Mopidy
+    - Mopidy-ALSAMixer
+    - Mopidy-Local-Images
+    - Mopidy-Iris
+    - youtube-dl
+    - Mopidy-SoundCloud
+    - Mopidy-Spotify
+    - git+https://github.com/rusty-dev/mopidy-deezer.git
+
+- name: install a python package eyed3
+  pip:
+    name: eyed3
+    version: 0.8.0
+
+- name: "update mopidy conf"
+  template:
+    src: mopidy.conf.j2
+    dest: /etc/mopidy/mopidy.conf
+
+- name: "restart mopidy"
+  service:
+     name: mopidy
+     state: restarted

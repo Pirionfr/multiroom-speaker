@@ -1,0 +1,8 @@
+---
+
+
+- import_tasks: client.yml
+  when: "'speaker' in group_names"
+
+- import_tasks: server.yml
+  when: "'server' in group_names"
