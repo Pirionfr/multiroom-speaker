@@ -5,6 +5,7 @@
   roles:
   - { role: init, tags: init, become : true}
   - { role: mopidy, tags: mopidy, become : true }
+  - { role: dlna, tags: dlna , become : true}
 
 
 
