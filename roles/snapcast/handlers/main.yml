@@ -1,0 +1,11 @@
+---
+
+- name: "restart snapclient"
+  service:
+    name: snapclient
+    state: restarted
+
+- name: "restart snapserver"
+  service:
+    name: snapserver
+    state: restarted

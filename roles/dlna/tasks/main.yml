@@ -28,14 +28,13 @@
     path: /etc/upmpdcli.conf
     regexp: '^#friendlyname'
     line: 'friendlyname = {{ inventory_hostname }}'
+  notify: "Restart upmpdcli"
 
 - name: "update upmpdcli conf"
   lineinfile:
     path: /etc/upmpdcli.conf
     regexp: '^#ohproductroom'
     line: 'ohproductroom = {{ inventory_hostname }}'
+  notify: "Restart upmpdcli"
 
-- name: "Restart Service"
-  service:
-    name: upmpdcli
-    state: restarted
+

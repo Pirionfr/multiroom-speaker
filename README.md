@@ -28,7 +28,8 @@ git clone https://github.com/Pirionfr/multiroom-speaker.git
 * [mopidy](https://www.mopidy.com/) - Mopidy is an extensible music server
 * [upmpdcli](https://www.lesbonscomptes.com/upmpdcli/) - UPnP Audio Media Renderer based on MPD
 * [airplay-sync](https://github.com/mikebrady/shairport-sync) - AirPlay audio player
-* [snapcast](https://github.com/badaix/snapcast) - Synchronous multi-room audio player 
+* [snapcast](https://github.com/badaix/snapcast) - Synchronous multi-room audio player
+* [nginx](https://nginx.org) - HTTP and reverse proxy server
 
 ## License
 

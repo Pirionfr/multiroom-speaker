@@ -1,0 +1,6 @@
+---
+
+- name: "Restart upmpdcli"
+  service:
+    name: upmpdcli
+    state: restarted
