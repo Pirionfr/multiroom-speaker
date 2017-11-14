@@ -1,0 +1,21 @@
+---
+
+- name: "download client"
+  get_url:
+      url: "{{ url }}/v{{ version }}/snapclient_{{ version }}_{{ client_arch }}.deb"
+      dest: /tmp/snapclient_{{ version }}_armhf.deb
+
+- name: Install a .deb package
+  apt:
+    deb: /tmp/snapclient_{{ version }}_armhf.deb
+
+
+- name: Install missing dependencies
+  apt:
+   upgrade: true
+
+
+- name: "restart snapcserver"
+  service:
+     name: snapserver
+     state: restarted
