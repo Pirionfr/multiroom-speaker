@@ -10,9 +10,3 @@ option routers {{ router }}; #default gateway
 subnet {{ subnet }} netmask {{ netmask }} {
     range {{ iprangemin }} {{ iprangemax }}; #IP range to offer
 }
-
-#static IP-assignment
-host myLaptop {
-    hardware ethernet {{ hostvars[inventory_hostname]['ansible_' + interface].macaddress }};
-    fixed-address {{ ip }};
-}

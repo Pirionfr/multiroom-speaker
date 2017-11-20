@@ -24,4 +24,3 @@
     - avahi-daemon
     - avahi-discover
     - libnss-mdns
-

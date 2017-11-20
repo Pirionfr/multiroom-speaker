@@ -50,12 +50,7 @@
     - youtube-dl
     - Mopidy-SoundCloud
     - Mopidy-Spotify
-    - git+https://github.com/rusty-dev/mopidy-deezer.git
-
-- name: install a python package eyed3
-  pip:
-    name: eyed3
-    version: 0.8.0
+    - git+https://github.com/Pirionfr/mopidy-deezer.git
 
 - name: "update mopidy conf"
   template:
@@ -63,3 +58,7 @@
     dest: /etc/mopidy/mopidy.conf
   notify: "restart mopidy"
 
+- name: "enable mopidy"
+  service:
+    name: mopidy
+    enabled: true

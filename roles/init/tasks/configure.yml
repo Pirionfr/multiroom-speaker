@@ -18,6 +18,12 @@
     name: isc-dhcp-server
     enabled: false
 
+- name: "disable wpa_supplicant"
+  service:
+    name: wpa_supplicant
+    enabled: false
+
+
 - name: "update hosts file"
   template:
     src: hosts.j2
